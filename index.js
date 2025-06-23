@@ -15,7 +15,21 @@ const bodyParser = require('body-parser');
 
   const app = express();
   app.use(bodyParser.json());
-
+  app.get('/scrape', async (req, res) => {
+  const url = ""
+try {
+      const result = await cluster.execute(url, async ({ page, data: selector }) => {
+        await page.goto(url, { waitUntil: 'networkidle2' });
+        // Extract all matching elements' text
+        //const values = await page.$$eval(selector, els => els.map(e => e.textContent.trim()));
+        return values;
+      }, selector);
+      res.json({ values: "tested" });
+    } catch (err) {
+      console.error('Scrape error', err);
+      res.status(500).json({ error: err.message });
+    }
+  })
   // Endpoint: POST /scrape
   // Accepts { url: string, selector: string }
   app.post('/scrape', async (req, res) => {
