@@ -1,6 +1,6 @@
 // scraper-service/index.js
 const express = require('express');
-const { Cluster } = require('puppeteer-cluster');
+const { Cluster } = require('headless-cluster');
 const bodyParser = require('body-parser');
 
 (async () => {
