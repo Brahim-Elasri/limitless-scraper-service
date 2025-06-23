@@ -16,13 +16,16 @@ const bodyParser = require('body-parser');
   const app = express();
   app.use(bodyParser.json());
   app.get('/scrape', async (req, res) => {
-  const url = "https://google.com"
+  const url = "https://google.com";
+  var selector = ".selector";
+    
 try {
       const result = await cluster.execute(url, async ({ page, data: selector }) => {
         await page.goto(url, { waitUntil: 'networkidle2' });
         // Extract all matching elements' text
         //const values = await page.$$eval(selector, els => els.map(e => e.textContent.trim()));
-        return values;
+        //return values;
+        return "yes"
       }, selector);
       res.json({ values: "tested" });
     } catch (err) {
