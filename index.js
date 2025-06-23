@@ -33,11 +33,14 @@ try {
     // Crawl the Google page
     await cluster.task(async ({ page, data }) => {
         const { searchTerm, offset } = data;
-        await page.goto(
+    try{ 
+      await page.goto(
             'https://www.google.com/search?q=' + searchTerm + '&start=' + offset,
             { waitUntil: 'domcontentloaded' }
         );
-
+   } catch (err) {
+      console.error('Scrape error1', err)
+    }
         console.log('Extracting Google results for offset=' + offset);
 
         // Extract the links and titles of the search result page
