@@ -16,7 +16,7 @@ const bodyParser = require('body-parser');
   const app = express();
   app.use(bodyParser.json());
   app.get('/scrape', async (req, res) => {
-  const url = ""
+  const url = "https://google.com"
 try {
       const result = await cluster.execute(url, async ({ page, data: selector }) => {
         await page.goto(url, { waitUntil: 'networkidle2' });
